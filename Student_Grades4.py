@@ -5,8 +5,9 @@
 #프로그램 설명 : 키보드로부터 학번, 이름, 영어점수, C-언어점수, 파이썬 점수를 입력받아 총점, 평균, 학점, 등수를 계산하는 프로그램 작성
 ##############################
 
+#학생의 정보를 객체로 저장하기위한 class선언.
 class Stduent:
-    def __init__(self):
+    def __init__(self):#저장할 학생의 정보들 초기화.
         self.student_num = None
         self.student_name = None
         self.Eng_score = None
@@ -26,7 +27,7 @@ class Stduent:
         self.sum = self.Eng_score + self.C_score + self.P_score
     def avg_score(self):#학생의 평균 계산 함수
         self.avg = self.sum / 3
-    def grade_score(self):
+    def grade_score(self):#학생의 학점 계산 함수
         if(self.avg >= 95):
             self.grade = "A+"
         elif(95 > self.avg >= 90):
@@ -45,7 +46,7 @@ class Stduent:
             self.grade = "D0"
         else:
             self.grade = "F"
-    def print_data(self):
+    def print_data(self):#학생이 정보 출력 함수.
         print("학생 학번 : ",self.student_num)
         print("학생 이름 : ",self.student_name)
         print("학생의 총점 : ",self.sum)
@@ -57,17 +58,17 @@ class Stduent:
 def Student_rank():
     Rank = 1
     current_sum = None
-    for i in range(4):
+    for i in range(4):#총점을 기준으로 객체를 내림차순 정렬.
         for j in range(5):
             if(not(j <= i)):
                 if(students[j].sum >= students[i].sum):
                     students[j],students[i] = students[i],students[j]
     for student in students:
       if(current_sum == student.sum):
-          Rank -= 1
+          Rank -= 1#점수가 동일하면 등수를 동일하게 만들기위해 다시 - 연산을 진행.
       current_sum = student.sum
       student.rank = Rank
-      Rank += 1
+      Rank += 1#등수를 +1해서 한등수 내림.
 
 #학생 정보 삭제 함수
 def Remove(a,b,c,d,e):
@@ -89,6 +90,7 @@ def Sum_sort():
 
     for i in list:
         print(i)
+
 #평균이 80점 이상인 학생 수 카운트 함수
 def Count_avg_over():
     avg_list =[]
